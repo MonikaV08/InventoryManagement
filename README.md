@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/6a3e9489-9091-4e87-a903-7e24e319d5aa
+
 # 📦 Inventory Management System
 
 A Flask-based web application for managing product inventories across multiple locations. This app provides CRUD operations, product movement tracking, and inventory reporting features.
@@ -7,8 +11,12 @@ A Flask-based web application for managing product inventories across multiple l
 ## 🛠️ Tech Stack
 
 - **Backend**: Flask (Python)
-- **Database**: PostgreSQL / MySQL
-- **Frontend**: HTML, CSS, Bootstrap
+- **Database**: PostgreSQL
+
+https://github.com/user-attachments/assets/b9735585-aa54-4ebd-a085-203df4a0ed4d
+
+
+- **Frontend**: HTML, CSS
 - **ORM**: SQLAlchemy
 - **Other Tools**: Flask-Migrate, Flask-WTF
 
