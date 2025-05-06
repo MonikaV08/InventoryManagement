@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Registration</title>
+    <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+    }
+    .container {
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        margin-top: 40px;
+        width: 400px; 
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    form {
+        font-size: 16px;
+    }
+    div {
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    input[type="submit"] {
+        font-size: 16px;
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    .error {
+        color: red;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .blue-btn {
+        background-color: #4d055b;
+        color: white;
+    }
+    .green-btn {
+        background-color: #cd7a32;
+        color: white;
+        margin-top: 10px;
+    }
+
+    .horizontal-buttons {
+        margin-top: 30px; 
+        display: flex;
+        justify-content: flex-start; 
+        gap: 10px; 
+    }
+
+    .horizontal-buttons input[type="submit"] {
+        background-color: #aced1f;
+        color: white;
+        padding: 12px 24px; 
+        font-size: 14px; 
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        min-width: 180px; 
+    }
+
+    
+    .horizontal-buttons input[type="submit"]:hover {
+        background-color: #fced1b;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+    {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+    {% endif %}
+
+    <h2>{{ 'Edit Product' if product_id else 'Add Product' }}</h2>
+
+    <form action="/confirm" method="post">
+        <div>
+            <label>Product ID</label>
+            <input type="text" name="product_id" value="{{ product_id or '' }}" required>
+        </div>
+        <div>
+            <label>Product Name</label>
+            <input type="text" name="product" value="{{ product or '' }}" required>
+        </div>
+        <div>
+            <label>Location ID</label>
+            <input type="text" name="location_id" value="{{ location_id or '' }}" required>
+        </div>
+        <div>
+            <label>Location</label>
+            <input type="text" name="location" value="{{ location or '' }}" required>
+        </div>
+        <div>
+            <label>Quantity</label>
+            <input type="number" name="quantity" value="{{ quantity or '' }}" required>
+        </div>
+        <input type="submit" value="Submit" class="blue-btn">
+    </form>
+
+    <form action="/view" method="get">
+        <input type="submit" value="View My Products" class="green-btn">
+    </form>
+
+    
+    <div class="horizontal-buttons">
+        <form action="{{ url_for('add_movement') }}" method="get">
+        <input type="submit" value="Record Product Movement">
+        </form>
+
+        <form action="{{ url_for('check_inventory') }}" method="get">
+        <input type="submit" value="Stock_Report">
+        </form>
+    </div>
+    </div>
+</body>
+</html>

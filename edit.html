@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+    <style>
+    body {
+        font-family: Arial;
+        font-size: 18px;
+        padding: 20px;
+        text-align: center;
+        background: linear-gradient(to right, pink, blueviolet)
+    }
+
+    .form-container {
+        display: inline-block;
+        border: 1px solid #000;
+        padding: 20px;
+        margin-top: 30px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    label {
+        margin: 10px 0 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"], input[type="number"] {
+        padding: 8px;
+        font-size: 16px;
+        width: 300px;
+        margin-bottom: 15px;
+    }
+
+    button {
+        font-size: 18px;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+    </style>
+</head>
+<body>
+    <h2 style="font-size: 28px;">Edit Product</h2>
+
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    <div class="form-container">
+        <form method="POST" action="{{ url_for('edit_product', product_id=product_id) }}">
+            <label for="product_id">Product ID:</label>
+            <input type="text" id="product_id" name="product_id" value="{{ product_id }}" readonly>
+
+            <label for="product">Product Name:</label>
+            <input type="text" id="product" name="product" value="{{ product_name }}" required>
+
+            <label for="location_id">Location ID:</label>
+            <input type="text" id="location_id" name="location_id" value="{{ location_id }}" readonly>
+
+            <label for="location">Location Name:</label>
+            <input type="text" id="location" name="location" value="{{ location_name }}" required>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" value="{{ quantity }}" required>
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+
+    <br>
+    <a href="{{ url_for('view_products') }}">
+    <button>Back to Products</button>
+    </a>
+</body>
+</html>

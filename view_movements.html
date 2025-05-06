@@ -1,0 +1,24 @@
+<div style="text-align: center; margin-top: 30px;">
+    <h2 style="font-size: 32px; margin-bottom: 20px;">All Product Movements</h2>
+  
+    <table style="margin: 0 auto; border-collapse: collapse; font-size: 18px;" border="1">
+        <tr>
+            <th style="padding: 12px; text-align: center;">MOV_ID</th>
+            <th style="padding: 12px; text-align: center;">TimeStamp</th>
+            <th style="padding: 12px; text-align: center;">Product_ID</th>
+            <th style="padding: 12px; text-align: center;">Qty</th>
+            <th style="padding: 12px; text-align: center;">From (Location_ID)</th>
+            <th style="padding: 12px; text-align: center;">To (Location_ID)</th>
+        </tr>
+        {% for m in movements %}
+        <tr>
+        <td style="padding: 12px; text-align: center;">{{ m[0] }}</td>
+        <td style="padding: 12px; text-align: center;">{{ m[1] }}</td>
+        <td style="padding: 12px; text-align: center;">{{ m[4] }}</td>
+        <td style="padding: 12px; text-align: center;">{{ m[5] }}</td>
+        <td style="padding: 12px; text-align: center;">{{ m[2] or '---' }}</td>
+        <td style="padding: 12px; text-align: center;">{{ m[3] or '---' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>

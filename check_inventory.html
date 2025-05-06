@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Inventory</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; 
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #9d9090;
+        }
+        .container {
+            background: #9b8484;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+        .button {
+            text-decoration: none;
+            background-color: #0970ca; 
+            color: rgb(154, 238, 20);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 16px;
+            display: inline-block;
+        }
+        .button:hover {
+            background-color: #3d0f99;
+        }
+        .button-group {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+        }
+        .button-group a {
+            text-decoration: none;
+            background-color: #ffea00; 
+            color: rgb(16, 147, 147);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .button-group a:hover {
+            background-color: #e8f713;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">Check Location Inventory</h2>
+
+        {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+
+        <form method="post" style="font-size: 18px;">
+            <div style="margin-bottom: 15px;">
+                <label>Location ID and Name:</label>
+                <select name="location_id" required style="font-size: 16px; padding: 5px;">
+                    <option value="">-- Select Location ID --</option>
+                    {% for loc in locations %}
+                    <option value="{{ loc[0] }}">{{ loc[0] }} - {{ loc[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="submit" style="font-size: 16px; padding: 8px 16px;">Check Inventory</button>
+            </div>
+        </form>
+
+
+        <div style="margin-top: 30px;">
+            <a href="{{ url_for('view_products') }}" class="button">Back</a>
+        </div>
+
+        <div class="button-group">
+            <a href="/register" class="button">Add Products</a>
+            <a href="/movement" class="button">Record Product Movement</a>
+        </div>
+    </div>
+</body>
+</html>

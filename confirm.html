@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Success</title>
+    <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; 
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #eadddd;
+    }
+    .container {
+      background: #f4eded;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 40px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #1a0c0c;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #8d7e7e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3>Current Order</h3>
+    <table>
+      <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Location ID</th>
+        <th>Location</th>
+        <th>Quantity</th>
+      </tr>
+      <tr>
+        <td>{{ product_id }}</td>
+        <td>{{ product_name }}</td>
+        <td>{{ location_id }}</td>
+        <td>{{ location }}</td> 
+        <td>{{ quantity }}</td>
+      </tr>
+    </table>
+    <br>
+    <form action="/register" method="get">
+      <input type="submit" value="Back to Ordering" style="font-size: 16px; padding: 8px 16px;">
+    </form>
+  </div>
+</body>
+</html>

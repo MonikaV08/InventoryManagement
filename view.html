@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 40px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        width: 90%;
+        max-width: 1000px;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 2px solid #444;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid #999;
+        padding: 12px;
+        text-align: center;
+    }
+
+    th {
+        font-size: 20px;
+        background-color: #f2f2f2;
+    }
+
+    td {
+        font-size: 18px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    .edit-btn {
+        color: #6600ff;
+    }
+
+    .delete-btn {
+        color: red;
+    }
+
+    .action-btn {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background-color: #007bff;
+        color: rgb(188, 158, 158);
+    }
+
+    .green-btn {
+        background-color: #007bff;
+        color: rgb(192, 155, 155);
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    form {
+        display: inline-block;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h2>Product Inventory by Location</h2>
+
+    <table>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Location</th>
+            <th>Quantity</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for p in products %}
+        <tr>
+            <td>{{ p[0] }}</td>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td>{{ p[3] }}</t>
+            <td>
+                <form action="{{ url_for('edit_product', product_id=p[0]) }}" method="get">
+                <button type="submit" class="edit-btn">Edit</button>
+                </form>
+            </td>
+            <td>
+                <a href="{{ url_for('delete_product', product_id=p[0], location=p[2]) }}">
+                    <button class="delete-btn">Delete</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/register">
+        <button class="action-btn">Add Products</button>
+    </a>
+
+    <a href="{{ url_for('add_movement') }}">
+        <button class="action-btn">Record Product Movement</button>
+    </a>
+
+    <form action="{{ url_for('check_inventory') }}">
+        <button type="submit" class="green-btn">Stock Report at Warehouse (Locations)</button>
+    </form>
+    </div>
+</body>
+</html>

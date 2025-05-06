@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory View</title>
+    <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; 
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #bb9f9f;
+    }
+    .container {
+        background: #9f8989;
+        padding: 30px 40px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        margin-top: 40px;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+    th, td {
+        border: 1px solid #360c0c;
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #ddd9d9;
+    }
+    .location-name {
+        color: #007BFF;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Inventory for Location: {{ location_id }} - {{ location }}</h2>
+
+    {% if empty %}
+        <p style="color: red;"><strong>The warehouse at this location is currently empty.</strong></p>
+    {% else %}
+        <table>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+            </tr>
+            {% for item in inventory %}
+            <tr>
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('check_inventory') }}" style="font-size: 16px;">Back</a>
+    </div>
+</body>
+</html>
